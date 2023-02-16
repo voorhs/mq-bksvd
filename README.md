@@ -14,6 +14,7 @@
 
 ## Быстрые запросы к матрице расстояний в $\ell_2^2$ метрике
 k-ая координата для query $Ay$, где A - матрица расстояний, может быть найдена следующим образом:
+
 $$
 (Ay)_k = \sum_{j=1}^ny_j\|x_k-x_j\|_2^2 = ||x_k||_2^2 \sum_{j=1}^ny_j + \sum_{j=1}^ny_j||x_j||_2^2 - 2\langle x_k, \sum_{j=1}^ny_jx_j  \rangle
 $$
@@ -38,18 +39,24 @@ $$
 
 ## Быстрые запросы к матрице расстояний в $l_1$ метрике
 $k$-ая координата для query $Ay$, где A - матрица расстояний, может быть найдена следующим образом:
+
 $$
 (Ay)_k = \sum_{j=1}^ny_j\|x_k-x_j\|=\sum_{j=1}^n\sum_{i=1}^dy_j|x_{k,i}-x_{j,i}|=\sum_{i=1}^d\sum_{j=1}^ny_j|x_{k,i}-x_{j,i}|
 $$
+
 Для каждого признака $i = \overline{1, d}$ введем перестановку $\pi ^ i$, которая соответствует отсортированному в порядке возрастания массиву значений $x_{j,i}$ (по столбцам). Тогда: 
+
 $$
 (Ay)_k = \sum_{i=1}^d\sum_{j=1}^ny_j|x_{k,i}-x_{j,i}| = \sum_{i=1}^d\Bigg(\sum_{j \ : \ \pi^i(k) \leqslant \pi^i(j)} y_j(x_{j,i}-x_{k,i})  \quad + \sum_{j \ : \ \pi^i(k) \gt\pi^i(j)} y_j(x_{k,i}-x_{j,i}) \Bigg)
 $$
+
 Перегруппируем значения в скобках:
+
 $$
 (Ay)_k = \sum_{i=1}^d\Bigg(x_{k,i}\bigg(\sum_{j \ : \ \pi^i(k) \gt\pi^i(j)}y_j \quad- \sum_{j \ : \ \pi^i(k) \leqslant \pi^i(j)} y_j\bigg)\quad + \sum_{j \ : \ \pi^i(k) \leqslant \pi^i(j)}y_jx_{j,i} \quad- \sum_{j \ : \ \pi^i(k) \gt\pi^i(j)} y_jx_{j,i} \Bigg) \\ 
 (Ay)_k = \sum_{i=1}^d \bigg(x_{k,i}(S_3 - S_4) + S_2 - S_1 \bigg)
 $$
+
 ## Сложность алгоритма
 
 - Препроцессинг - поиск перестановок $\pi^i$
@@ -81,6 +88,7 @@ Randomized Block Krylov Method [MM15]:
 ## Сходимость
 
 **Теорема (10, 11, 12 из [MM15]).** С вероятностью $0.99$ алгоритм BKSVD возвращает $k$-ранговую аппроксимацию $\widehat{A_k}=\widehat{U}_k\widehat{\Sigma}_k\widehat{V}_k$ такую, что
+
 $$
 \begin{align}
 \|A-\widehat{A}_k\|_2&\leq (1+\epsilon)\|A-A_k\|_2\\
@@ -88,12 +96,15 @@ $$
 |\sigma_i-\widehat{\sigma}_i|&\leq\epsilon\cdot\sigma_{k+1}^2
 \end{align}
 $$
+
 Для этого требуется $q=\Theta\left(k/\sqrt{\epsilon}\right)$ запросов к матрице $A$.
 
 **Теорема (1.3 из [BCW22]).** Для $\epsilon>0$ и константы $p\ge1$ найдётся распределение $\mathcal{D}$ матриц $n\times n$ таких, что для $A\sim\mathcal{D}$ любой алгоритм, который хотя с константной вероятностью возвращает вектор $v:$
+
 $$
 \|A-Avv^T\|^p_{S_p}\leq(1+\epsilon)\min_{\|u\|_1=1}\|A-Auu^T\|^p_{S_p},
 $$
+
 требует $\Omega(1/\epsilon^{1/3})$ запросов к матрице $A$.
 
 ##  Gaussian Mixture (24K объектов)
