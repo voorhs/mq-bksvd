@@ -9,7 +9,7 @@ from numba import jit
 
 class BaseDistMatrix:
     def __init__(self, X):
-        raise NotImplementedError()
+        self.X = X.copy()
 
     def dot(self, B):
         """
@@ -36,9 +36,6 @@ class BaseDistMatrix:
 
 
 class L1DistMatrix(BaseDistMatrix):
-    def __init__(self, X):
-        self.X = X.copy()
-
     def preprocess(self):
         self.order1 = np.argsort(self.X, axis=0)
         self.order2 = np.argsort(np.argsort(self.X, axis=0), axis=0)
@@ -67,3 +64,13 @@ def inner_loop(X, order, B, C, n, d):
             z[k] += X[k, i] * (S3 - S4) + S2 - S1
 
     return z
+
+
+class L2_2DistMatrix(BaseDistMatrix):
+    def _query(self, y):
+        X_norm = np.sum(self.X ** 2, axis=1)
+        S_1 = np.sum(y)
+        S_2 = np.sum(X_norm * y)
+        v = np.sum(self.X * y[:, None], axis=0)
+        z = S_1 * X_norm + S_2 - 2 * self.X @ v
+        return z
