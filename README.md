@@ -54,6 +54,7 @@ $$
 $$
 (Ay)_k = \sum_{i=1}^d\Bigg(x_{k,i}\bigg(\sum_{j \ : \ \pi^i(k) \gt\pi^i(j)}y_j \quad- \sum_{j \ : \ \pi^i(k) \leqslant \pi^i(j)} y_j\bigg)\quad + \sum_{j \ : \ \pi^i(k) \leqslant \pi^i(j)}y_jx_{j,i} \quad- \sum_{j \ : \ \pi^i(k) \gt\pi^i(j)} y_jx_{j,i} \Bigg)
 $$
+
 $$
 (Ay)_k = \sum_{i=1}^d \bigg(x_{k,i}(S_3 - S_4) + S_2 - S_1 \bigg)
 $$
