@@ -36,7 +36,7 @@ $$
 
 **Основная особенность — отсутствие preprocessing**
 
-## Быстрые запросы к матрице расстояний в $l_1$ метрике
+## Быстрые запросы к матрице расстояний в $\ell_1$ метрике
 $k$-ая координата для query $Ay$, где A - матрица расстояний, может быть найдена следующим образом:
 
 $$
@@ -52,7 +52,9 @@ $$
 Перегруппируем значения в скобках:
 
 $$
-(Ay)_k = \sum_{i=1}^d\Bigg(x_{k,i}\bigg(\sum_{j \ : \ \pi^i(k) \gt\pi^i(j)}y_j \quad- \sum_{j \ : \ \pi^i(k) \leqslant \pi^i(j)} y_j\bigg)\quad + \sum_{j \ : \ \pi^i(k) \leqslant \pi^i(j)}y_jx_{j,i} \quad- \sum_{j \ : \ \pi^i(k) \gt\pi^i(j)} y_jx_{j,i} \Bigg) \\ 
+(Ay)_k = \sum_{i=1}^d\Bigg(x_{k,i}\bigg(\sum_{j \ : \ \pi^i(k) \gt\pi^i(j)}y_j \quad- \sum_{j \ : \ \pi^i(k) \leqslant \pi^i(j)} y_j\bigg)\quad + \sum_{j \ : \ \pi^i(k) \leqslant \pi^i(j)}y_jx_{j,i} \quad- \sum_{j \ : \ \pi^i(k) \gt\pi^i(j)} y_jx_{j,i} \Bigg)
+$$
+$$
 (Ay)_k = \sum_{i=1}^d \bigg(x_{k,i}(S_3 - S_4) + S_2 - S_1 \bigg)
 $$
 
