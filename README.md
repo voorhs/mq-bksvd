@@ -19,7 +19,6 @@ $$
 (Ay)_k = \sum_{j=1}^ny_j\|x_k-x_j\|_2^2 = ||x_k||_2^2 \sum_{j=1}^ny_j + \sum_{j=1}^ny_j||x_j||_2^2 - 2\langle x_k, \sum_{j=1}^ny_jx_j  \rangle
 $$
 
-
 ## Составим простой query-алгоритм 
 1) $v =  \sum_{i=1}^ny_ix_i$
 
@@ -27,7 +26,7 @@ $$
 
 3) $S_2 = \sum_{i=1}^ny_i||x_i||_2^2$
 
-4) $\operatorname{ans}(k) = S_1||x_k||_2^2 + S_2 - 2\langle x_k, v\rangle$
+4) $\text{ans}(k) = S_1||x_k||_2^2 + S_2 - 2\langle x_k, v\rangle$
 
 **Сложность** $O(nd)$ 
 
@@ -82,7 +81,7 @@ Randomized Block Krylov Method [MM15]:
 2. $\Pi\sim\mathcal{N}(0,1)^{d\times k}$
 3. $K:=[A^TA\Pi, (A^TA)^2\Pi, \ldots, (A^TA)^q\Pi]\in\mathbb{R}^{n\times qk}$
 4. $K=QR,\ Q\in\mathbb{R}^{n\times qk}$
-5. $\widehat{U},\widehat{\Sigma},\widehat{V}\leftarrow \operatorname{SVD}(AQ)$
+5. $\widehat{U},\widehat{\Sigma},\widehat{V}\leftarrow \text{SVD}(AQ)$
 6. **Вернуть** $\widehat{U}_k, \widehat{\Sigma}_k, Q\widehat{V}_k$
 
 Подробности в [bksvd.py](https://github.com/voorhs/mq-bksvd/blob/main/code/bksvd.py).
@@ -136,10 +135,8 @@ $$
 
 Возможное решение: использовать и запросы, и матрицу расстояний.
 
-
 ## Литература
 
-- [IS22] Indyk, P., Silwal, S.. (2022). *Faster Linear Algebra for Distance Matrices.*
-
-- [MM15] Musco, C., & Musco, C.. (2015). *Randomized Block Krylov Methods for Stronger and Faster Approximate Singular Value Decomposition.*
-- [BCW22] Bakshi, A., Clarkson, K., & Woodruff, D.. (2022). *Low-Rank Approximation with $1/ε^{1/3}$ Matrix-Vector Products.*
+- [IS22] *Indyk, P., Silwal, S..* (2022). Faster Linear Algebra for Distance Matrices.
+- [MM15] *Musco, C., & Musco, C..* (2015). Randomized Block Krylov Methods for Stronger and Faster Approximate Singular Value Decomposition.
+- [BCW22] *Bakshi, A., Clarkson, K., & Woodruff, D..* (2022). Low-Rank Approximation with $1/ε^{1/3}$ Matrix-Vector Products.
